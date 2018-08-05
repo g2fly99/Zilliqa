@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libPOW.a  CMakeFiles/POW.dir/pow.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libPOW.a

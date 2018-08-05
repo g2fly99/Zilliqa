@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libBlock.a  CMakeFiles/Block.dir/BlockBase.cpp.o CMakeFiles/Block.dir/DSBlock.cpp.o CMakeFiles/Block.dir/MicroBlock.cpp.o CMakeFiles/Block.dir/TxBlock.cpp.o CMakeFiles/Block.dir/VCBlock.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libBlock.a

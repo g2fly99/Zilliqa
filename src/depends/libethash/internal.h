@@ -17,9 +17,9 @@ extern "C" {
 #endif
 
 // compile time settings
-#define NODE_WORDS (64/4)
-#define MIX_WORDS (ETHASH_MIX_BYTES/4)
-#define MIX_NODES (MIX_WORDS / NODE_WORDS)
+#define NODE_WORDS (64/4) //16
+#define MIX_WORDS (ETHASH_MIX_BYTES/4) // 32
+#define MIX_NODES (MIX_WORDS / NODE_WORDS) // 2
 #include <stdint.h>
 
 typedef union node {
@@ -180,6 +180,12 @@ bool ethash_compute_full_data(
 	ethash_light_t const light,
 	ethash_callback_t callback
 );
+
+int EthashLightGpu(uint64_t *result,
+  ethash_light_t const light,
+  ethash_h256_t const header_hash,
+  ethash_h256_t const difficulty,
+  uint64_t const nonce);
 
 #ifdef __cplusplus
 }

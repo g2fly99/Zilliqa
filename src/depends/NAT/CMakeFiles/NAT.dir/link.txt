@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++  -dynamiclib -Wl,-headerpad_max_install_names  -o ../../../lib/libNAT.dylib -install_name @rpath/libNAT.dylib CMakeFiles/NAT.dir/nat.cpp.o -lminiupnpc 

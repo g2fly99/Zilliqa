@@ -67,6 +67,7 @@ typedef struct ethash_return_value {
 	bool success;
 } ethash_return_value_t;
 
+
 /**
  * Allocate and initialize a new ethash_light handler
  *
@@ -152,6 +153,8 @@ uint64_t ethash_full_dag_size(ethash_full_t full);
  * Calculate the seedhash for a given block number
  */
 ethash_h256_t ethash_get_seedhash(uint64_t block_number);
+
+
 
 #ifdef __cplusplus
 }

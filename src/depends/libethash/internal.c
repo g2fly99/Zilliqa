@@ -34,6 +34,7 @@
 #include "io.h"
 #include "sha3.h"
 
+
 uint64_t ethash_get_datasize(uint64_t const block_number)
 {
 	assert(block_number / ETHASH_EPOCH_LENGTH < 2048);
@@ -218,53 +219,8 @@ static bool ethash_hash(
 				ethash_calculate_dag_item(&tmp_node, index * MIX_NODES + n, light);
 				dag_node = &tmp_node;
 			}
-
-#if defined(_M_X64) && ENABLE_SSE
-			{
-				__m128i fnv_prime = _mm_set1_epi32(FNV_PRIME);
-				__m128i xmm0 = _mm_mullo_epi32(fnv_prime, mix[n].xmm[0]);
-				__m128i xmm1 = _mm_mullo_epi32(fnv_prime, mix[n].xmm[1]);
-				__m128i xmm2 = _mm_mullo_epi32(fnv_prime, mix[n].xmm[2]);
-				__m128i xmm3 = _mm_mullo_epi32(fnv_prime, mix[n].xmm[3]);
-				mix[n].xmm[0] = _mm_xor_si128(xmm0, dag_node->xmm[0]);
-				mix[n].xmm[1] = _mm_xor_si128(xmm1, dag_node->xmm[1]);
-				mix[n].xmm[2] = _mm_xor_si128(xmm2, dag_node->xmm[2]);
-				mix[n].xmm[3] = _mm_xor_si128(xmm3, dag_node->xmm[3]);
-			}
-			#elif defined(__MIC__)
-			{
-				// __m512i implementation via union
-				//	Each vector register (zmm) can store sixteen 32-bit integer numbers
-				__m512i fnv_prime = _mm512_set1_epi32(FNV_PRIME);
-				__m512i zmm0 = _mm512_mullo_epi32(fnv_prime, mix[n].zmm[0]);
-				mix[n].zmm[0] = _mm512_xor_si512(zmm0, dag_node->zmm[0]);
-			}
-			#else
-			{
-				for (unsigned w = 0; w != NODE_WORDS; ++w) {
-					mix[n].words[w] = fnv_hash(mix[n].words[w], dag_node->words[w]);
-				}
-			}
-#endif
-		}
-
+}
 	}
-
-// Workaround for a GCC regression which causes a bogus -Warray-bounds warning.
-// The regression was introduced in GCC 4.8.4, fixed in GCC 5.0.0 and backported to GCC 4.9.3 but
-// never to the GCC 4.8.x line.
-//
-// See https://gcc.gnu.org/bugzilla/show_bug.cgi?id=56273
-//
-// This regression is affecting Debian Jesse (8.5) builds of cpp-ethereum (GCC 4.9.2) and also
-// manifests in the doublethinkco armel v5 cross-builds, which use crosstool-ng and resulting
-// in the use of GCC 4.8.4.  The Tizen runtime wants an even older GLIBC version - the one from
-// GCC 4.6.0!
-
-#if defined(__GNUC__) && (__GNUC__ < 5)
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Warray-bounds"
-#endif // define (__GNUC__)
 
 	// compress mix
 	for (uint32_t w = 0; w != MIX_WORDS; w += 4) {
@@ -274,10 +230,6 @@ static bool ethash_hash(
 		reduction = reduction * FNV_PRIME ^ mix->words[w + 3];
 		mix->words[w / 4] = reduction;
 	}
-
-#if defined(__GNUC__) && (__GNUC__ < 5)
-#pragma GCC diagnostic pop
-#endif // define (__GNUC__)
 
 	fix_endian_arr32(mix->words, MIX_WORDS / 4);
 	memcpy(&ret->mix_hash, mix->bytes, 32);
@@ -311,6 +263,9 @@ ethash_h256_t ethash_get_seedhash(uint64_t block_number)
 		SHA3_256(&ret, (uint8_t*)&ret, 32);
 	return ret;
 }
+
+
+
 
 bool ethash_quick_check_difficulty(
 	ethash_h256_t const* header_hash,
@@ -585,4 +540,21 @@ void const* ethash_full_dag(ethash_full_t full)
 uint64_t ethash_full_dag_size(ethash_full_t full)
 {
 	return full->file_size;
+}
+
+/// Constructs a 256-bit hash from an array of bytes.
+///
+/// @param bytes  A pointer to array of at least 32 bytes.
+/// @return       The constructed hash.
+inline ethash_h256_t hash256_from_bytes(const uint8_t bytes[32])
+{
+    ethash_h256_t h;
+    memcpy(&h, bytes, sizeof(h));
+    return h;
+}
+
+/// Calculates the epoch number out of the block number.
+inline int get_epoch_number(int block_number)
+{
+    return block_number / ETHASH_EPOCH_LENGTH;
 }

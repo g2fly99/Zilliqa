@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/cc  -dynamiclib -Wl,-headerpad_max_install_names  -o libminilzo.dylib -install_name @rpath/libminilzo.dylib CMakeFiles/minilzo.dir/minilzo.c.o 

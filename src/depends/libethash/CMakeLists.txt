@@ -1,7 +1,7 @@
 set(LIBRARY ethash)
 
 if (CPPETHEREUM)
-	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
+	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC -framework OpenCL")
 endif ()
 
 set(CMAKE_BUILD_TYPE Release)
@@ -13,6 +13,7 @@ endif()
 set(FILES 	util.h
           	io.c
           	internal.c
+		ethash_cl.c
           	ethash.h
           	endian.h
           	compiler.h
@@ -28,10 +29,10 @@ endif()
 include_directories(${CMAKE_SOURCE_DIR}/src/)
 list(APPEND FILES sha3.c sha3.h)
 
-add_library(ethash SHARED ${FILES})
+add_library(ethash SHARED ${FILES} )
 
 if (CRYPTOPP_FOUND)
-	TARGET_LINK_LIBRARIES(ethash ${CRYPTOPP_LIBRARIES})
+	TARGET_LINK_LIBRARIES(ethash ${CRYPTOPP_LIBRARIES} OpenCL)
 endif()
 
 if (UNIX AND NOT APPLE)

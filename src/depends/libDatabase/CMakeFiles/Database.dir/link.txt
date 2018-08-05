@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libDatabase.a  CMakeFiles/Database.dir/LevelDB.cpp.o CMakeFiles/Database.dir/MemoryDB.cpp.o CMakeFiles/Database.dir/OverlayDB.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libDatabase.a

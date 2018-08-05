@@ -1,0 +1,87 @@
+Determining if the CL_VERSION_2_2 exist failed with the following output:
+Change Dir: /Users/Peter/work/code/Zilliqa/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_94bd2/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_94bd2.dir/build.make CMakeFiles/cmTC_94bd2.dir/build
+Building C object CMakeFiles/cmTC_94bd2.dir/CheckSymbolExists.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -std=gnu99    -o CMakeFiles/cmTC_94bd2.dir/CheckSymbolExists.c.o   -c /Users/Peter/work/code/Zilliqa/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/Users/Peter/work/code/Zilliqa/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: error: use of undeclared identifier 'CL_VERSION_2_2'
+  return ((int*)(&CL_VERSION_2_2))[argc];
+                  ^
+1 error generated.
+make[2]: *** [CMakeFiles/cmTC_94bd2.dir/CheckSymbolExists.c.o] Error 1
+make[1]: *** [cmTC_94bd2/fast] Error 2
+
+File /Users/Peter/work/code/Zilliqa/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include </System/Library/Frameworks/OpenCL.framework/Headers/cl.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef CL_VERSION_2_2
+  return ((int*)(&CL_VERSION_2_2))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the CL_VERSION_2_1 exist failed with the following output:
+Change Dir: /Users/Peter/work/code/Zilliqa/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_9d8d0/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_9d8d0.dir/build.make CMakeFiles/cmTC_9d8d0.dir/build
+Building C object CMakeFiles/cmTC_9d8d0.dir/CheckSymbolExists.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -std=gnu99    -o CMakeFiles/cmTC_9d8d0.dir/CheckSymbolExists.c.o   -c /Users/Peter/work/code/Zilliqa/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/Users/Peter/work/code/Zilliqa/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: error: use of undeclared identifier 'CL_VERSION_2_1'
+  return ((int*)(&CL_VERSION_2_1))[argc];
+                  ^
+1 error generated.
+make[2]: *** [CMakeFiles/cmTC_9d8d0.dir/CheckSymbolExists.c.o] Error 1
+make[1]: *** [cmTC_9d8d0/fast] Error 2
+
+File /Users/Peter/work/code/Zilliqa/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include </System/Library/Frameworks/OpenCL.framework/Headers/cl.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef CL_VERSION_2_1
+  return ((int*)(&CL_VERSION_2_1))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the CL_VERSION_2_0 exist failed with the following output:
+Change Dir: /Users/Peter/work/code/Zilliqa/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_631d9/fast"
+/Library/Developer/CommandLineTools/usr/bin/make -f CMakeFiles/cmTC_631d9.dir/build.make CMakeFiles/cmTC_631d9.dir/build
+Building C object CMakeFiles/cmTC_631d9.dir/CheckSymbolExists.c.o
+/Library/Developer/CommandLineTools/usr/bin/cc   -std=gnu99    -o CMakeFiles/cmTC_631d9.dir/CheckSymbolExists.c.o   -c /Users/Peter/work/code/Zilliqa/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+/Users/Peter/work/code/Zilliqa/CMakeFiles/CMakeTmp/CheckSymbolExists.c:8:19: error: use of undeclared identifier 'CL_VERSION_2_0'
+  return ((int*)(&CL_VERSION_2_0))[argc];
+                  ^
+1 error generated.
+make[2]: *** [CMakeFiles/cmTC_631d9.dir/CheckSymbolExists.c.o] Error 1
+make[1]: *** [cmTC_631d9/fast] Error 2
+
+File /Users/Peter/work/code/Zilliqa/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include </System/Library/Frameworks/OpenCL.framework/Headers/cl.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef CL_VERSION_2_0
+  return ((int*)(&CL_VERSION_2_0))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+

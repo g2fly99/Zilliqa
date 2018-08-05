@@ -105,6 +105,11 @@ private:
     ethash_return_value_t EthashFullCompute(ethash_full_t& full,
                                             ethash_h256_t const& header_hash,
                                             uint64_t nonce);
+
+    ethash_mining_result_t MineLightGpu(ethash_light_t& light,
+                                     ethash_h256_t const& header_hash,
+                                     ethash_h256_t& difficulty);
+
     ethash_mining_result_t MineLight(ethash_light_t& light,
                                      ethash_h256_t const& header_hash,
                                      ethash_h256_t& difficulty);

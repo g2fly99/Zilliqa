@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libUtils.a  CMakeFiles/Utils.dir/BitVector.cpp.o CMakeFiles/Utils.dir/DataConversion.cpp.o CMakeFiles/Utils.dir/Logger.cpp.o CMakeFiles/Utils.dir/SanityChecks.cpp.o CMakeFiles/Utils.dir/Scheduler.cpp.o CMakeFiles/Utils.dir/TimeUtils.cpp.o CMakeFiles/Utils.dir/TxnRootComputation.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libUtils.a
